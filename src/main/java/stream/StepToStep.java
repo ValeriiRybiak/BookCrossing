@@ -1,6 +1,5 @@
 package stream;
 
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 

@@ -3,7 +3,6 @@ package lambda;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.function.*;
 
@@ -30,7 +29,6 @@ public class ReadyImplementationsLambda {
             var a = x.getA();
             return x.setA(a * a);
         };
-
         A a = new A(12);
         System.out.println(absA.apply(a));
         //Function<T,R> transition function from T to R
@@ -46,7 +44,5 @@ public class ReadyImplementationsLambda {
             return new A(a1);
         };
         System.out.println(aSupplier.get().toString());
-        //
-
     }
 }

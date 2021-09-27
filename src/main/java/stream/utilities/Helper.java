@@ -1,6 +1,5 @@
 package stream.utilities;
 
-import lambda.functional_interfaces.MyPredicate;
 import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
@@ -29,8 +28,8 @@ public class Helper {
 
     public int getRandomNumber(int minValue, int maxValue) {
         BiPredicate<Integer, Integer> isCorrectValues = (x, y) -> x > y || x.equals(y);
-        if (isCorrectValues.test(minValue, maxValue))
-            throw new ArithmeticException("Incorrect data");
+        if (isCorrectValues.test(minValue, maxValue)) throw new ArithmeticException("Incorrect data");
+
         return RANDOM
                 .ints(minValue, maxValue + 1)
                 .findFirst()
@@ -50,6 +49,7 @@ public class Helper {
             steps = getRandomNumber(1, 3);
         else if (number > 100)
             steps = getRandomNumber(1, 5);
+
         return findDivider(number, steps);
     }
 
@@ -66,7 +66,7 @@ public class Helper {
         return temp;
     }
 
-    public static int square(int a){
+    public static int square(int a) {
         return (int) Math.pow(a, 2);
     }
 }

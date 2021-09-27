@@ -13,17 +13,19 @@ public class Task6 {
                 .stream()
                 .distinct()
                 .collect(Collectors.toMap(Node::getName, Node::getIndex));
+
         System.out.println(collect);
     }
 }
+
 @lombok.Data
-class Data{
+class Data {
     @NonNull
     private List<Node> nodes;
 }
 
 @lombok.Data
-class Node{
+class Node {
     @NonNull
     private int index;
     @NonNull

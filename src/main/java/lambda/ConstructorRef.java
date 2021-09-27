@@ -19,10 +19,6 @@ class A{
     public A(int a) {
         this.a = a;
     }
-
-    public A() {
-
-    }
 }
 
 interface ABuilder{
