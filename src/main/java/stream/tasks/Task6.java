@@ -1,4 +1,4 @@
-package stream;
+package stream.tasks;
 
 import lombok.NonNull;
 
@@ -11,6 +11,16 @@ public class Task6 {
         Map<String, Integer> collect = data
                 .getNodes()
                 .stream()
+                .distinct()
+                .collect(Collectors.toMap(Node::getName, Node::getIndex));
+
+        System.out.println(collect);
+    }
+
+    public static void realization2(List<Data> data) {
+        Map<String, Integer> collect = data
+                .stream()
+                .flatMap(x -> x.getNodes().stream())
                 .distinct()
                 .collect(Collectors.toMap(Node::getName, Node::getIndex));
 

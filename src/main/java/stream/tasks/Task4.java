@@ -1,7 +1,7 @@
-package stream;
+package stream.tasks;
 
 import org.apache.commons.lang3.ArrayUtils;
-import stream.utilities.Helper;
+import stream.util.Helper;
 
 import java.util.ArrayList;
 import java.util.Arrays;

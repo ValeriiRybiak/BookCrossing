@@ -1,6 +1,6 @@
-package stream;
+package stream.tasks;
 
-import stream.utilities.Helper;
+import stream.util.Helper;
 
 import java.util.ArrayList;
 import java.util.Arrays;

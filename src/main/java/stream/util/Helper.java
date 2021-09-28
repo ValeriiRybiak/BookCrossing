@@ -1,15 +1,30 @@
-package stream.utilities;
+package stream.util;
 
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @UtilityClass
 public class Helper {
     private final Random RANDOM = new Random();
+
+    public int getRandomNumber(int bound) {
+        return RANDOM.nextInt(bound);
+    }
+
+    public List<String> getRandomStringList(int size, int elementLength) {
+        return Stream
+                .iterate(1, x -> x + 1)
+                .limit(size)
+                .map(x -> RandomStringUtils.random(elementLength, true, false))
+                .collect(Collectors.toList());
+    }
 
     public int[] getRandomArray(int arrSize, int minValue, int maxValue) {
         int[] arr = new int[arrSize];
@@ -68,5 +83,14 @@ public class Helper {
 
     public static int square(int a) {
         return (int) Math.pow(a, 2);
+    }
+
+
+    public static void printNumber(Number x) {
+        System.out.print(String.valueOf(x).concat(" "));
+    }
+
+    public static void printTaskName(String name) {
+        System.out.printf("\n--------------------    %s    --------------------%n", name);
     }
 }
