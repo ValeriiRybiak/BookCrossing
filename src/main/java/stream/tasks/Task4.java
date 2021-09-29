@@ -8,16 +8,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static java.util.Collections.reverseOrder;
+import static java.util.Comparator.reverseOrder;
+
 public class Task4 {
     private static int[] realization1(int... arr) {
-        var newArr = Arrays
+        return Arrays
                 .stream(arr)
                 .filter(i -> i <= 55 && i >= 30)
-                .sorted()
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .mapToInt(Integer::valueOf)
                 .toArray();
-        ArrayUtils.reverse(newArr);
-
-        return newArr;
     }
 
     private static Integer[] realization2(int[] arr) {
