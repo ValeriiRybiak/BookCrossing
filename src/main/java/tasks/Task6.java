@@ -1,18 +1,16 @@
-package stream.tasks;
+package tasks;
 
 import lombok.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
 public class Task6 {
     public static void realization(Data data) {
-               var collect = data
+        var collect = data
                 .getNodes()
                 .stream()
                 .collect(groupingBy(Node::getName, mapping(Node::getIndex, toList())));

@@ -2,7 +2,6 @@ package stream.general;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,7 +56,7 @@ public class CreationStream {
         Stream<Integer> parallelStream2 = integerList.stream().parallel();
 
         //Iterate
-        Stream<Integer> iterateStream = Stream.iterate(0, x -> x+1);
+        Stream<Integer> iterateStream = Stream.iterate(0, x -> x + 1);
 
         //Generate
         Stream<Integer> generateStream = Stream.generate(() -> 1);

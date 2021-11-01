@@ -1,15 +1,11 @@
-package stream.tasks;
+package tasks;
 
-import org.apache.commons.lang3.ArrayUtils;
 import stream.util.Helper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-
-import static java.util.Collections.reverseOrder;
-import static java.util.Comparator.reverseOrder;
 
 public class Task4 {
     private static int[] realization1(int... arr) {

@@ -2,6 +2,10 @@ package lambda;
 
 import lombok.Getter;
 
+interface ABuilder {
+    A createA(int a);
+}
+
 public class ConstructorRef {
     public static void main(String[] args) {
         ABuilder aBuilder = A::new;
@@ -12,15 +16,11 @@ public class ConstructorRef {
     }
 }
 
-class A{
+class A {
     @Getter
     private int a;
 
     public A(int a) {
         this.a = a;
     }
-}
-
-interface ABuilder{
-    A createA(int a);
 }

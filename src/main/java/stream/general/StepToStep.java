@@ -1,4 +1,4 @@
-package stream.tasks;
+package stream.general;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;

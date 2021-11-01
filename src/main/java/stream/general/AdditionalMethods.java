@@ -2,7 +2,8 @@ package stream.general;
 
 import java.util.List;
 
-import static stream.util.Helper.*;
+import static common_utils.TaskHelper.printTaskName;
+import static stream.util.Helper.getRandomStringList;
 
 public class AdditionalMethods {
     public static void main(String[] args) {
