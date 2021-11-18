@@ -1,10 +1,9 @@
-package tasks.task7.pojos;
+package tasks.task_7.pojos;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import tasks.task7.repo.CoffeeRecipes;
-import tasks.task7.repo.CoffeeRoast;
+import tasks.task_7.repo.CoffeeRecipes;
+import tasks.task_7.repo.CoffeeRoast;
 
 @Getter
 @ToString

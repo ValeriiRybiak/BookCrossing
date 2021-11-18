@@ -1,11 +1,9 @@
-package tasks.task7.repo;
+package tasks.task_7.repo;
 
 import lombok.experimental.UtilityClass;
-import tasks.task7.CoffeeMaker;
+import tasks.task_7.CoffeeMaker;
 
-import java.util.function.Supplier;
-
-import static tasks.task7.repo.CoffeeRoast.AMERICAN;
+import static tasks.task_7.repo.CoffeeRoast.AMERICAN;
 
 @UtilityClass
 public class CoffeeMakerRepo {

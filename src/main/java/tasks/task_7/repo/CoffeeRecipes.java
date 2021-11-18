@@ -1,9 +1,9 @@
-package tasks.task7.repo;
+package tasks.task_7.repo;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import static tasks.task7.repo.CoffeeRoast.*;
+import static tasks.task_7.repo.CoffeeRoast.*;
 
 @RequiredArgsConstructor
 @Getter

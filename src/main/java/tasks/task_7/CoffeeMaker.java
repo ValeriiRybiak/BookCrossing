@@ -1,20 +1,19 @@
-package tasks.task7;
+package tasks.task_7;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import tasks.task7.exceptions.IncorrectRoastType;
-import tasks.task7.exceptions.NotEnoughCoffeeBeans;
-import tasks.task7.exceptions.NotEnoughMilk;
-import tasks.task7.exceptions.NotEnoughWater;
-import tasks.task7.pojos.Cup;
-import tasks.task7.repo.CoffeeRecipes;
-import tasks.task7.repo.CoffeeRoast;
+import tasks.task_7.exceptions.IncorrectRoastType;
+import tasks.task_7.exceptions.NotEnoughCoffeeBeans;
+import tasks.task_7.exceptions.NotEnoughMilk;
+import tasks.task_7.exceptions.NotEnoughWater;
+import tasks.task_7.pojos.Cup;
+import tasks.task_7.repo.CoffeeRecipes;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static tasks.task7.repo.CoffeeRoast.*;
+import static tasks.task_7.repo.CoffeeRoast.*;
 
 @Data
 @AllArgsConstructor

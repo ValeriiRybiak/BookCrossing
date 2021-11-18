@@ -2,15 +2,15 @@ package optinal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import java.util.Optional;
 
 import static common_utils.TaskHelper.printTaskName;
+import static java.util.Optional.*;
 
 public class Actions {
     public static void main(String[] args) {
-        Optional<User> o = Optional.of(new User("Alex", 20));
-        Optional<User> o1 = Optional.ofNullable(null);
+        Optional<User> o = of(new User("Alex", 20));
+        Optional<User> o1 = ofNullable(null);
         /* map */
         printTaskName("map");
         System.out.println(o.map(x -> x.getName().toUpperCase()).toString());

@@ -1,14 +1,14 @@
-package tasks.task7;
+package tasks.task_7;
 
-import tasks.task7.exceptions.IncorrectRoastType;
-import tasks.task7.pojos.Cup;
-import tasks.task7.repo.CoffeeRecipes;
+import tasks.task_7.exceptions.IncorrectRoastType;
+import tasks.task_7.pojos.Cup;
+import tasks.task_7.repo.CoffeeRecipes;
 
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-import static tasks.task7.repo.CoffeeMakerRepo.getCoffeeMaker1;
+import static tasks.task_7.repo.CoffeeMakerRepo.getCoffeeMaker1;
 
 public class Task7 {
     static Scanner scanner = new Scanner(System.in);
