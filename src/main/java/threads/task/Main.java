@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import static java.lang.String.valueOf;
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Сделать симуляцию общего чата между двумя потоками. Каждый поток должен передавать сообщения через общую очередь
@@ -32,7 +33,7 @@ import static java.lang.Thread.sleep;
  * разными способами (смотрим способы создания потоков)
  **/
 class Client implements Runnable {
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
     public static Map<String, List<String>> messages = new ConcurrentHashMap<>();
     private static int counter = 0;
 
@@ -55,7 +56,7 @@ class Client implements Runnable {
                 .entrySet()
                 .stream()
                 .filter(map -> !map.getKey().equals(getCurrentThreadName()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue));
         return messages.get();
     }
 
@@ -116,7 +117,7 @@ class Client implements Runnable {
     }
 
     public int getRandomTimeout() {
-        return random.nextInt(2000) + 1;
+        return RANDOM.nextInt(2000) + 1;
     }
 
     private void clearHistory() {
@@ -132,7 +133,7 @@ class Client implements Runnable {
     public void run() {
         while (!currentThread().isInterrupted()) {
             sleep(getRandomTimeout());
-            synchronized (random) {
+            synchronized (RANDOM) {
                 if (!messages.isEmpty()) readNewMessages();
                 writeRandomMessage();
                 isThreadActive();
@@ -152,7 +153,7 @@ public class Main {
         c.start();
         var isAllThreadsAreInterrupted = false;
         while (!isAllThreadsAreInterrupted) {
-            synchronized (new Object()) {
+            synchronized (args) {
                 if (!a.isAlive() && a.isInterrupted()) a.join();
                 if (!b.isAlive() && b.isInterrupted()) b.join();
                 if (!c.isAlive() && c.isInterrupted()) c.join();
