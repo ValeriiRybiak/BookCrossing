@@ -114,7 +114,7 @@ class Client implements Runnable {
     public void run() {
         while (!currentThread().isInterrupted()) {
             sleep(getRandomTimeout());
-            synchronized (RANDOM) {
+            synchronized (this) {
                 if (!messages.isEmpty()) readNewMessages();
                 writeRandomMessage();
                 isThreadActive();
