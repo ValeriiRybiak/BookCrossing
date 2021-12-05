@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Supplier;
 import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import static java.lang.String.valueOf;
 import static java.lang.Thread.currentThread;
@@ -34,6 +32,7 @@ import static java.util.stream.Collectors.toMap;
  **/
 class Client implements Runnable {
     private static final Random RANDOM = new Random();
+    private static final int MAX_SIZE_OF_MESSAGES_IN_POOL = 3;
     public static Map<String, List<String>> messages = new ConcurrentHashMap<>();
     private static int counter = 0;
 
@@ -52,12 +51,15 @@ class Client implements Runnable {
     }
 
     private Map<String, List<String>> getMessagesFromOtherThreads() {
-        Supplier<Map<String, List<String>>> messages = () -> Client.messages
+        return messages
                 .entrySet()
                 .stream()
                 .filter(map -> !map.getKey().equals(getCurrentThreadName()))
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue));
-        return messages.get();
+    }
+
+    private List<String> getMessagesFromCurrentThreads() {
+        return messages.get(getCurrentThreadName());
     }
 
     public void readNewMessages() {
@@ -85,35 +87,18 @@ class Client implements Runnable {
                 ));
     }
 
-    private void printMessagesOfInterruptedThreads() {
-        System.out.println("From: " + getCurrentThreadName() + " message: " + messages
-                .get(getCurrentThreadName())
-                .stream()
-                .collect(Collector.of(
-                        StringBuilder::new,
-                        (sb, message) -> sb.append(message).append(", "),
-                        StringBuilder::append,
-                        sb -> {
-                            var messages = sb.toString();
-                            if (messages.endsWith(", "))
-                                return messages.substring(0, messages.length() - 2);
-                            return messages;
-                        }
-                )) + " interrupt ______________________________"
-        );
-    }
-
     public void isThreadActive() {
-        var isOneOfThreadWroteMoreThan3Messages = getMessagesFromOtherThreads()
-                .values()
-                .stream()
-                .anyMatch(x -> x.size() >= 3);
-        var isCurrentThreadWroteMoreThan3Messages = messages.get(getCurrentThreadName()).size() >= 3;
-        if (isOneOfThreadWroteMoreThan3Messages || isCurrentThreadWroteMoreThan3Messages) {
-            printMessagesOfInterruptedThreads();
-            clearOwnHistory();
+        var sizeOfMessagesFromCurrentThread = getMessagesFromCurrentThreads().size();
+
+        if (sizeOfMessagesFromCurrentThread >= MAX_SIZE_OF_MESSAGES_IN_POOL) {
             currentThread().interrupt();
+            System.out.println("___________________________________ "
+                    .concat(getCurrentThreadName())
+                    .concat(" interrupt ")
+                    .concat("___________________________________")
+            );
         }
+
     }
 
     public int getRandomTimeout() {
@@ -122,10 +107,6 @@ class Client implements Runnable {
 
     private void clearHistory() {
         getMessagesFromOtherThreads().forEach((key, value) -> value.clear());
-    }
-
-    private void clearOwnHistory() {
-        messages.remove(getCurrentThreadName());
     }
 
     @SneakyThrows
@@ -147,25 +128,10 @@ public class Main {
     public static void main(String[] args) {
         var a = new Thread(new Client(), "a");
         var b = new Thread(new Client(), "b");
-        var c = new Thread(new Client(), "c");
         a.start();
         b.start();
-        c.start();
-        var isAllThreadsAreInterrupted = false;
-        while (!isAllThreadsAreInterrupted) {
-            synchronized (args) {
-                if (!a.isAlive() && a.isInterrupted()) a.join();
-                if (!b.isAlive() && b.isInterrupted()) b.join();
-                if (!c.isAlive() && c.isInterrupted()) c.join();
-                if (!a.isAlive() && !b.isAlive() && !c.isAlive()) isAllThreadsAreInterrupted = true;
-                System.out.println("__________________MAIN__________________");
-                System.out.println("a State -> " + a.getState());
-                System.out.println("b State -> " + b.getState());
-                System.out.println("c State -> " + c.getState());
-                System.out.println("__________________MAIN__________________");
-            }
-            sleep(1000);
-        }
+        a.join();
+        b.join();
         System.out.println("END MAIN");
     }
 }
