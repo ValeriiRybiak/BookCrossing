@@ -5,8 +5,8 @@ import java.util.function.Supplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static common_utils.TaskHelper.printTaskName;
 import static stream.util.Helper.printNumber;
-import static stream.util.Helper.printTaskName;
 
 public class TerminalMethods {
     public static void main(String[] args) {

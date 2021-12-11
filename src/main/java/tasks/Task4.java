@@ -1,6 +1,5 @@
-package stream.tasks;
+package tasks;
 
-import org.apache.commons.lang3.ArrayUtils;
 import stream.util.Helper;
 
 import java.util.ArrayList;
@@ -10,14 +9,13 @@ import java.util.Comparator;
 
 public class Task4 {
     private static int[] realization1(int... arr) {
-        var newArr = Arrays
+        return Arrays
                 .stream(arr)
                 .filter(i -> i <= 55 && i >= 30)
-                .sorted()
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .mapToInt(Integer::valueOf)
                 .toArray();
-        ArrayUtils.reverse(newArr);
-
-        return newArr;
     }
 
     private static Integer[] realization2(int[] arr) {

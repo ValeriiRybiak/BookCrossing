@@ -14,11 +14,11 @@ import java.util.stream.Stream;
 public class Helper {
     private final Random RANDOM = new Random();
 
-    public int getRandomNumber(int bound) {
+    public static int getRandomNumber(int bound) {
         return RANDOM.nextInt(bound);
     }
 
-    public List<String> getRandomStringList(int size, int elementLength) {
+    public static List<String> getRandomStringList(int size, int elementLength) {
         return Stream
                 .iterate(1, x -> x + 1)
                 .limit(size)
@@ -41,7 +41,7 @@ public class Helper {
         );
     }
 
-    public int getRandomNumber(int minValue, int maxValue) {
+    public static int getRandomNumber(int minValue, int maxValue) {
         BiPredicate<Integer, Integer> isCorrectValues = (x, y) -> x > y || x.equals(y);
         if (isCorrectValues.test(minValue, maxValue)) throw new ArithmeticException("Incorrect data");
 
@@ -58,7 +58,7 @@ public class Helper {
                 .toArray(Integer[]::new);
     }
 
-    public int findRandomDivider(int number) {
+    public static int findRandomDivider(int number) {
         int steps = 1;
         if (number <= 100 && number >= 10)
             steps = getRandomNumber(1, 3);
@@ -88,9 +88,5 @@ public class Helper {
 
     public static void printNumber(Number x) {
         System.out.print(String.valueOf(x).concat(" "));
-    }
-
-    public static void printTaskName(String name) {
-        System.out.printf("\n--------------------    %s    --------------------%n", name);
     }
 }

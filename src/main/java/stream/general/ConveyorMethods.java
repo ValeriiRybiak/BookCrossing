@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static stream.util.Helper.printTaskName;
+import static common_utils.TaskHelper.printTaskName;
 
 public class ConveyorMethods {
     private static Random random = new Random();

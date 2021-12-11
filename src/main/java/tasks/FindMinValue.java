@@ -1,4 +1,4 @@
-package stream.tasks;
+package tasks;
 
 import lombok.experimental.UtilityClass;
 
